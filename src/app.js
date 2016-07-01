@@ -4,15 +4,21 @@ import {
   Text,
   View
 } from 'react-native';
+import { Provider } from 'react-redux';
+import configureStore from './store/configure.store';
+
+const store = configureStore();
 
 export default class ecommApp extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to E-Comm!
-        </Text>
-      </View>
+			<Provider store={store}>
+				<View style={styles.container}>
+					<Text style={styles.welcome}>
+						Welcome to E-Comm!
+					</Text>
+				</View>
+			</Provider>
     );
   }
 }
