@@ -1,6 +1,10 @@
 import * as actions from '../actions';
 
-const initialState = {};
+const initialState = {
+	items: [],
+	loadingProducts: false,
+	selectedProduct: null,
+};
 
 const productsReducer = function(state = initialState, action) {
 	switch(action.type) {
