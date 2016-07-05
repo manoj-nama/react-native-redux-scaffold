@@ -10,6 +10,8 @@ import {
 
 import { containerStyle as styles } from '../styles';
 
+import Nav from './navigator.container';
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -17,11 +19,7 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>
-					Welcome to E-Comm!
-				</Text>
-			</View>
+			<Nav />
 		)
 	}
 }

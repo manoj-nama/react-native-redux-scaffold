@@ -5,6 +5,8 @@ import {
 	Text,
 } from 'react-native';
 
+import HomeComponent from '../components/home.component';
+
 export default class Nav extends Component {
 	constructor(props) {
 		super(props);
@@ -25,7 +27,8 @@ export default class Nav extends Component {
 
 	render() {
 		const initialRoute = {
-			name: 'Home'
+			name: 'Home',
+			component: HomeComponent
 		};
 		return (
 			<Navigator
