@@ -94,7 +94,7 @@ class NavContainer extends Component {
 	}
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function (state) {
 	return state;
 };
 const Nav = connect(mapStateToProps)(NavContainer);

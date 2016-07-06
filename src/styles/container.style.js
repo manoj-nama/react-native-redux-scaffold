@@ -29,6 +29,6 @@ export const navStyle = StyleSheet.create({
 	},
 	title: {
 		fontWeight: '900',
-		marginTop: 10,
+		marginTop: 15,
 	}
 });
