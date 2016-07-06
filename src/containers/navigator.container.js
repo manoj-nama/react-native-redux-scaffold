@@ -7,10 +7,11 @@ import {
 	TouchableHighlight,
 	StyleSheet,
 } from 'react-native';
-
+import { connect } from 'react-redux';
 import HomeComponent from '../components/home.component';
+import { navStyle as styles } from '../styles/container.style';
 
-export default class Nav extends Component {
+class NavContainer extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -28,14 +29,13 @@ export default class Nav extends Component {
 		}
 	}
 
-	render() {
-		const initialRoute = {
-			name: 'home',
-			title: 'E-Commerce',
-			component: HomeComponent
-		};
+	_getNavigationBar(hidden) {
+		const { navigation } = this.props;
+		if (navigation.hideNavBar) {
+			return null;
+		}
 
-		var NavigationBarRouteMapper = {
+		let NavigationBarRouteMapper = {
 			LeftButton(route, navigator, index, navState) {
 				if (index > 0) {
 					return (
@@ -62,18 +62,29 @@ export default class Nav extends Component {
 		};
 
 		return (
+			<Navigator.NavigationBar
+				style={ styles.nav }
+				routeMapper={ NavigationBarRouteMapper } />
+		)
+	}
+
+	render() {
+		const initialRoute = {
+			name: 'home',
+			title: 'BROWSE',
+			component: HomeComponent
+		};
+
+		return (
 			<View style={{ flex: 1 }}>
 				<StatusBar
-					hidden={true}
-					backgroundColor="blue"
+					hidden={false}
 					barStyle="default"
 					/>
 				<Navigator
 					style={{ flex: 1 }}
 					navigationBar={
-						<Navigator.NavigationBar
-							style={ styles.nav }
-							routeMapper={ NavigationBarRouteMapper } />
+						this._getNavigationBar()
 					}
 					configureScene={ this.configureScene }
 					initialRoute={ initialRoute }
@@ -83,12 +94,8 @@ export default class Nav extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
-	nav: {
-		backgroundColor: '#eee'
-	},
-	title: {
-		fontWeight: '600',
-		paddingVertical: 5,
-	}
-});
+const mapStateToProps = function(state) {
+	return state;
+};
+const Nav = connect(mapStateToProps)(NavContainer);
+export default Nav;

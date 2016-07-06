@@ -7,12 +7,12 @@ import {
 	Text,
 	View,
 } from 'react-native';
-
+import { connect } from 'react-redux';
 import { containerStyle as styles } from '../styles';
 
 import Nav from './navigator.container';
 
-export default class App extends Component {
+class AppContainer extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -23,3 +23,10 @@ export default class App extends Component {
 		)
 	}
 }
+
+const mapStateToProps = function (state) {
+	return state;
+}
+
+const App = connect(mapStateToProps)(AppContainer);
+export default App;

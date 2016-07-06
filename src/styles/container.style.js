@@ -20,3 +20,15 @@ export const containerStyle = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export const navStyle = StyleSheet.create({
+  nav: {
+		backgroundColor: '#fff',
+		borderBottomWidth: 1,
+		borderBottomColor: '#eee',
+	},
+	title: {
+		fontWeight: '900',
+		marginTop: 10,
+	}
+});
