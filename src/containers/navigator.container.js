@@ -5,6 +5,7 @@ import {
 	Text,
 	StatusBar,
 	TouchableHighlight,
+	TouchableOpacity,
 	StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -36,16 +37,17 @@ class NavContainer extends Component {
 			return null;
 		}
 
+		//TODO: Make the icons and buttons config based
 		let NavigationBarRouteMapper = {
 			LeftButton(route, navigator, index, navState) {
 				if (index === 0) { //just to test the icon and placements
 					return (
-						<TouchableHighlight
+						<TouchableOpacity
 							underlayColor="transparent"
 							style={ styles.leftNavButton }
 							onPress={() => { if (index > 0) { navigator.pop() } } }>
 							<Icon name='menu' size={30} />
-						</TouchableHighlight>
+						</TouchableOpacity>
 					)
 				}
 				else { return null }
@@ -53,12 +55,11 @@ class NavContainer extends Component {
 			RightButton(route, navigator, index, navState) {
 				if (route.onPress) {
 					return (
-						<TouchableHighlight
+						<TouchableOpacity
+							style={ styles.rightNavButton }
 							onPress={ () => route.onPress() }>
-							<Text style={ styles.rightNavButtonText }>
-								{ route.rightText || '>' }
-							</Text>
-						</TouchableHighlight>
+							<Icon name='shopping-cart' size={25} /> 
+						</TouchableOpacity>
 					)
 				}
 			},
@@ -78,9 +79,9 @@ class NavContainer extends Component {
 		const initialRoute = {
 			name: 'home',
 			title: 'BROWSE',
-			// onPress: () => {
-			// 	console.log("pressed right button");
-			// },
+			onPress: () => {
+				console.log("pressed right button");
+			},
 			component: HomeComponent
 		};
 
