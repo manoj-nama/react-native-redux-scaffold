@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Home from '../containers/home.container';
+import Cart from '../containers/cart.container';
 import { navStyle as styles } from '../styles';
 let Icon = require('react-native-vector-icons/MaterialIcons');
 
@@ -40,8 +41,7 @@ class NavContainer extends Component {
 		//TODO: Make the icons and buttons config based
 		let NavigationBarRouteMapper = {
 			LeftButton(route, navigator, index, navState) {
-				if (index === 0) { //just to test the icon and placements
-					return (
+				return (
 						<TouchableOpacity
 							underlayColor="transparent"
 							style={ styles.leftNavButton }
@@ -49,15 +49,13 @@ class NavContainer extends Component {
 							<Icon name='menu' size={30} />
 						</TouchableOpacity>
 					)
-				}
-				else { return null }
 			},
 			RightButton(route, navigator, index, navState) {
-				if (route.onPress) {
+				if (route.onRightPress) {
 					return (
 						<TouchableOpacity
 							style={ styles.rightNavButton }
-							onPress={ () => route.onPress() }>
+							onPress={ () => route.onRightPress(route, navigator, index, navState) }>
 							<Icon name='shopping-cart' size={25} /> 
 						</TouchableOpacity>
 					)
@@ -79,8 +77,13 @@ class NavContainer extends Component {
 		const initialRoute = {
 			name: 'home',
 			title: 'BROWSE',
-			onPress: () => {
+			onRightPress: (route, navigator, index, navState) => {
 				console.log("pressed right button");
+				navigator.push({
+					name: 'cart',
+					title: 'YOUR CART',
+					component: Cart
+				});
 			},
 			component: Home
 		};
