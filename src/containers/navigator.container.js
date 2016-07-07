@@ -9,7 +9,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
-import HomeComponent from '../components/home.component';
+import Home from '../containers/home.container';
 import { navStyle as styles } from '../styles';
 let Icon = require('react-native-vector-icons/MaterialIcons');
 
@@ -82,7 +82,7 @@ class NavContainer extends Component {
 			onPress: () => {
 				console.log("pressed right button");
 			},
-			component: HomeComponent
+			component: Home
 		};
 
 		return (

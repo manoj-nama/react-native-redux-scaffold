@@ -33,7 +33,7 @@ export const navStyle = StyleSheet.create({
 	},
   leftNavButton: {
     marginTop: 7,
-    marginLeft: 15,
+    marginLeft: 10,
   },
   rightNavButton: {
     marginTop: 10,
