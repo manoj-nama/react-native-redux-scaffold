@@ -77,6 +77,9 @@ class NavContainer extends Component {
 		const initialRoute = {
 			name: 'home',
 			title: 'BROWSE',
+			component: Home,
+
+			//navigator button press callbacks
 			onRightPress: (route, navigator, index, navState) => {
 				console.log("pressed right button");
 				navigator.push({
@@ -84,8 +87,7 @@ class NavContainer extends Component {
 					title: 'YOUR CART',
 					component: Cart
 				});
-			},
-			component: Home
+			},			
 		};
 
 		return (
