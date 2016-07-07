@@ -1,1 +1,1 @@
-export { containerStyle } from './container.style';
+export { containerStyle, navStyle } from './container.style';

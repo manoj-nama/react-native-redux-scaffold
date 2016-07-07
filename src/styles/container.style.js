@@ -30,5 +30,9 @@ export const navStyle = StyleSheet.create({
 	title: {
 		fontWeight: '900',
 		marginTop: 15,
-	}
+	},
+  leftNavButton: {
+    marginTop: 7,
+    marginLeft: 15,
+  }
 });

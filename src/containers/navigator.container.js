@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import HomeComponent from '../components/home.component';
-import { navStyle as styles } from '../styles/container.style';
+import { navStyle as styles } from '../styles';
+let Icon = require('react-native-vector-icons/MaterialIcons');
 
 class NavContainer extends Component {
 	constructor(props) {
@@ -37,24 +38,29 @@ class NavContainer extends Component {
 
 		let NavigationBarRouteMapper = {
 			LeftButton(route, navigator, index, navState) {
-				if (index > 0) {
+				if (index === 0) { //just to test the icon and placements
 					return (
 						<TouchableHighlight
 							underlayColor="transparent"
+							style={ styles.leftNavButton }
 							onPress={() => { if (index > 0) { navigator.pop() } } }>
-							<Text style={ styles.leftNavButtonText }>Back</Text>
-						</TouchableHighlight>)
+							<Icon name='menu' size={30} />
+						</TouchableHighlight>
+					)
 				}
 				else { return null }
 			},
 			RightButton(route, navigator, index, navState) {
-				if (route.onPress) return (
-					<TouchableHighlight
-						onPress={ () => route.onPress() }>
-						<Text style={ styles.rightNavButtonText }>
-              { route.rightText || '>' }
-						</Text>
-					</TouchableHighlight>)
+				if (route.onPress) {
+					return (
+						<TouchableHighlight
+							onPress={ () => route.onPress() }>
+							<Text style={ styles.rightNavButtonText }>
+								{ route.rightText || '>' }
+							</Text>
+						</TouchableHighlight>
+					)
+				}
 			},
 			Title(route, navigator, index, navState) {
 				return <Text style={ styles.title }>{route.title}</Text>
@@ -72,6 +78,9 @@ class NavContainer extends Component {
 		const initialRoute = {
 			name: 'home',
 			title: 'BROWSE',
+			// onPress: () => {
+			// 	console.log("pressed right button");
+			// },
 			component: HomeComponent
 		};
 
