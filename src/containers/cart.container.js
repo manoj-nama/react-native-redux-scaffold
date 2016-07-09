@@ -4,6 +4,7 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native';
+import { toggleNavbar } from '../actions';
 import { connect } from 'react-redux';
 
 class CartContainer extends Component {
@@ -11,10 +12,14 @@ class CartContainer extends Component {
 		super(props);
 	}
 
+	componentWillUnmount() {
+		this.props.dispatch( toggleNavbar(false) );
+	}
+
 	render() {
 		return (
 			<View style={ styles.container }>
-				<Text>Cart Component</Text>
+				<Text>Cart Component, swipe down to close</Text>
 			</View>
 		);
 	}

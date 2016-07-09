@@ -21,6 +21,7 @@ class DrawerContainer extends Component {
 		let { showDrawer } = this.props.navigation;
 		let {width, height} = Dimensions.get("window");
 		this.state = { width, height };
+		this.showDrawer = showDrawer;
 	}
 
 	hideMenu() {
@@ -40,8 +41,13 @@ class DrawerContainer extends Component {
 			left: showDrawer ? 0 : -this.state.width,
 			width: this.state.width
 		}
-
-		LayoutAnimation.linear();
+		
+		if(showDrawer !== this.showDrawer) {
+			console.log("Layout");
+			LayoutAnimation.linear();
+			this.showDrawer = showDrawer;
+		}
+		
 
 		return (
 			<View style={[styles.container, slideStyle]}>

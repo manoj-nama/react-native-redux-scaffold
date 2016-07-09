@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import Home from '../containers/home.container';
 import Cart from '../containers/cart.container';
-import { openCloseDrawer } from '../actions';
+import { openCloseDrawer, toggleNavbar } from '../actions';
 import { navStyle as styles } from '../styles';
 let Icon = require('react-native-vector-icons/MaterialIcons');
 
@@ -88,9 +88,11 @@ class NavContainer extends Component {
 			//navigator button press callbacks
 			onRightPress: (route, navigator, index, navState) => {
 				console.log("pressed right button");
+				this.props.dispatch( toggleNavbar(true) );
 				navigator.push({
 					name: 'cart',
 					title: 'YOUR CART',
+					type: 'Modal',
 					component: Cart
 				});
 			},			
