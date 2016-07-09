@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import Home from '../containers/home.container';
 import Cart from '../containers/cart.container';
+import { openCloseDrawer } from '../actions';
 import { navStyle as styles } from '../styles';
 let Icon = require('react-native-vector-icons/MaterialIcons');
 
@@ -32,8 +33,13 @@ class NavContainer extends Component {
 		}
 	}
 
+	openDrawer() {
+		this.props.dispatch( openCloseDrawer(true) );
+	}
+
 	_getNavigationBar(hidden) {
 		const { navigation } = this.props;
+		const _this = this;
 		if (navigation.hideNavBar) {
 			return null;
 		}
@@ -45,7 +51,7 @@ class NavContainer extends Component {
 						<TouchableOpacity
 							underlayColor="transparent"
 							style={ styles.leftNavButton }
-							onPress={() => { if (index > 0) { navigator.pop() } } }>
+							onPress={() => _this.openDrawer() }>
 							<Icon name='menu' size={30} />
 						</TouchableOpacity>
 					)

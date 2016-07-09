@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { containerStyle as styles } from '../styles';
 
 import Nav from './navigator.container';
+import Drawer from './drawer.container';
 
 class AppContainer extends Component {
 	constructor(props) {
@@ -19,7 +20,10 @@ class AppContainer extends Component {
 
 	render() {
 		return (
-			<Nav />
+			<View style={{ flex: 1 }}>
+				<Nav />
+				<Drawer />
+			</View>
 		)
 	}
 }
