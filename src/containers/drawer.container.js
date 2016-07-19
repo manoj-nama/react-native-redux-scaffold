@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { openCloseDrawer } from '../actions';
+import Link from '../components/link.component';
 
 let Icon = require('react-native-vector-icons/MaterialIcons');
 
@@ -41,13 +42,13 @@ class DrawerContainer extends Component {
 			left: showDrawer ? 0 : -this.state.width,
 			width: this.state.width
 		}
-		
-		if(showDrawer !== this.showDrawer) {
+
+		if (showDrawer !== this.showDrawer) {
 			console.log("Layout");
 			LayoutAnimation.linear();
 			this.showDrawer = showDrawer;
 		}
-		
+
 
 		return (
 			<View style={[styles.container, slideStyle]}>
@@ -60,12 +61,20 @@ class DrawerContainer extends Component {
 						hidden={ showDrawer }
 						barStyle="default"
 						/>
-					<TouchableOpacity
-						style={ styles.closeBtn }
-						onPress={ () => this.hideMenu() }>
-						<Icon name='close' size={40} />
-					</TouchableOpacity>
+
+					<Link
+						style={ [styles.btn, styles.closeBtn] }
+						onClick={ this.hideMenu.bind(this) }
+						icon={ { name: 'close', size: 40 } } />
+
+					<Link
+						style={ styles.btn }
+						fontSize={ 20 }
+						onClick={ this.hideMenu.bind(this) }
+						text={'Men'} />	
 				</View>
+
+
 			</View>
 		);
 	}
@@ -93,9 +102,14 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.3,
 		shadowRadius: 10,
 	},
+	btn: {
+		paddingHorizontal: 6,
+		backgroundColor: 'rgba(255, 255, 255, 0.3)',
+		paddingVertical: 10,
+		marginBottom: 1,
+	},
 	closeBtn: {
-		marginLeft: 6,
-		marginTop: 21,
+		marginTop: 11,
 	}
 });
 
