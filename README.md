@@ -1,2 +1,2 @@
-# ecomm-app
-E-Commerce based app with React Native
+# React-Native-Redux-Starter
+Scaffold for starting `react-native` apps with `Redux`
